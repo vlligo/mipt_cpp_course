@@ -1,6 +1,6 @@
 #include "Game.h"
 
 int main() {
-    Game game(9, 9, 10);
+    Game game(4, 4, 2);
     game.run();
 }

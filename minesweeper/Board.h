@@ -24,6 +24,7 @@ public:
 
     OpenResult open(int x, int y); // zero-based
     FlagResult toggleFlag(int x, int y); // zero-based
+    void print(std::ostream& out, bool revealMines = false) const;
 
     bool hasWon() const;
 

@@ -150,6 +150,41 @@ FlagResult Board::toggleFlag(const int x, const int y) {
     return cell.flagged ? FlagResult::Placed : FlagResult::Removed;
 }
 
+void Board::print(std::ostream& out, const bool revealMines) const {
+    const int labelWidth = std::max(std::to_string(rows_).size(),
+        std::to_string(columns_).size());
+    const int cellWidth = labelWidth + 1;
+
+    out << std::setw(labelWidth) << "   ";
+    for (int x = 0; x < columns_; ++x) {
+        out << std::setw(cellWidth) << x + 1;
+    }
+    out << '\n';
+
+    for (int y = 0; y < rows_; ++y) {
+        out << std::setw(labelWidth) << y + 1 << " | ";
+        for (int x = 0; x < columns_; ++x) {
+            const Cell& cell = cells_[index(x, y)];
+            char c = '.';
+
+            if (revealMines && cell.mine) {
+                c = '*';
+            } else if (cell.flagged) {
+                c = 'F';
+            } else if (cell.open && cell.mine) {
+                c = '*';
+            } else if (cell.open && cell.adjacentMines == 0) {
+                c = ' ';
+            } else if (cell.open) {
+                c = static_cast<char>('0' + cell.adjacentMines);
+            }
+
+            out << std::setw(cellWidth) << c;
+        }
+        out << '\n';
+    }
+}
+
 bool Board::hasWon() const {
     return minesPlaced_ && openedSafeCells_ == rows_ * columns_ - mineCount_;
 }
