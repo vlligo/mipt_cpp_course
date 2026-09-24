@@ -24,13 +24,13 @@ public:
 
     OpenResult open(int x, int y); // zero-based
     FlagResult toggleFlag(int x, int y); // zero-based
-    void print(std::ostream& out, bool revealMines = false) const;
+    void print(std::ostream& out, bool revealMines = false) const; // printing the field in out stream
 
-    bool hasWon() const;
+    [[nodiscard]] bool hasWon() const;
 
-    int rows() const;
-    int columns() const;
-    int mineCount() const;
+    [[nodiscard]] int rows() const;
+    [[nodiscard]] int columns() const;
+    [[nodiscard]] int mineCount() const;
 
 private:
     struct Cell {
@@ -48,8 +48,8 @@ private:
     bool minesPlaced_ = false;
     std::vector<Cell> cells_;
 
-    bool inBounds(int x, int y) const;
-    int index(int x, int y) const;
+    [[nodiscard]] bool inBounds(int x, int y) const;
+    [[nodiscard]] int index(int x, int y) const;
 
     void placeMines(int safeX, int safeY);
     void countAdjacentMines();

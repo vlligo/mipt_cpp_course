@@ -2,7 +2,6 @@
 
 #include <algorithm>
 #include <iomanip>
-#include <limits>
 #include <ostream>
 #include <queue>
 #include <random>
@@ -151,8 +150,8 @@ FlagResult Board::toggleFlag(const int x, const int y) {
 }
 
 void Board::print(std::ostream& out, const bool revealMines) const {
-    const int labelWidth = std::max(std::to_string(rows_).size(),
-        std::to_string(columns_).size());
+    const int labelWidth = static_cast<int>(std::max(std::to_string(rows_).size(),
+        std::to_string(columns_).size()));
     const int cellWidth = labelWidth + 1;
 
     out << std::setw(labelWidth) << "   ";
@@ -167,12 +166,10 @@ void Board::print(std::ostream& out, const bool revealMines) const {
             const Cell& cell = cells_[index(x, y)];
             char c = '.';
 
-            if (revealMines && cell.mine) {
+            if ((revealMines || cell.open) && cell.mine) {
                 c = '*';
             } else if (cell.flagged) {
                 c = 'F';
-            } else if (cell.open && cell.mine) {
-                c = '*';
             } else if (cell.open && cell.adjacentMines == 0) {
                 c = ' ';
             } else if (cell.open) {
