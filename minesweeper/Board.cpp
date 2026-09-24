@@ -154,7 +154,7 @@ void Board::print(std::ostream& out, const bool revealMines) const {
         std::to_string(columns_).size()));
     const int cellWidth = labelWidth + 1;
 
-    out << std::setw(labelWidth) << "   ";
+    out << std::setw(labelWidth) << "    ";
     for (int x = 0; x < columns_; ++x) {
         out << std::setw(cellWidth) << x + 1;
     }
