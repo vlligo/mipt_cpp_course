@@ -1,14 +1,14 @@
 #include <iostream>
 
 int main() {
-  // int*** represents floors -> shelves -> compartments.
-  // void* holds either an int[] of totals or a double[] of averages,
-  // depending on the mode selected at runtime.
-  // Input is assumed valid; stock counts and totals fit in int.
-  // In order of simplicity shelves number and compartments number is 2
+ /*
+  * int*** stands for floor->shelf->compartment
+  * Number of shelves and compartments assumed as 2 in order of simplicity
+  * Assuming input is valid and all numbers fit to int
+  */
 
   int floors;
-  int mode;  // 0 = totals, 1 = averages
+  int mode;  // 0 - totals, 1 - averages
   std::cin >> floors >> mode;
 
   int*** stock = new int**[floors];
