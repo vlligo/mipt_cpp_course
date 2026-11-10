@@ -10,8 +10,14 @@
 - `InventoryItem` (abstract)
   - `Helmet`
   - `DockStation`
+  - `Transport`
+    - `Bicycle`
+    - `ElectricBicycle`
+    - `ElectricScooter`
 - `EnergyConsumer` (abstract)
   - `DockStation`
+  - `ElectricBicycle`
+  - `ElectricScooter`
 
 
 ## Smart Pointers
