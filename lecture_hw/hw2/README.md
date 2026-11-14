@@ -18,6 +18,9 @@
   - `DockStation`
   - `ElectricBicycle`
   - `ElectricScooter`
+- `ServiceCenter`
+- `Registry`
+- `Fleet`
 
 
 ## Smart Pointers
