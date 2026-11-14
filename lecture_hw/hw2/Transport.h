@@ -9,6 +9,7 @@ class Transport : public InventoryItem {
 public:
     const std::string& inventoryId() const override;
     const std::string& name() const override;
+    bool suitableForNovice(int threshold) const override;
     int score() const;
 
 protected:

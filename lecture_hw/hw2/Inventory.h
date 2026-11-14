@@ -12,7 +12,7 @@ public:
     virtual const std::string& name() const = 0;
     virtual std::string describe() const = 0;
 
-    virtual double energyConsumption() const;
+    virtual double dailyEnergy() const;
     virtual bool suitableForNovice(int threshold) const;
 };
 

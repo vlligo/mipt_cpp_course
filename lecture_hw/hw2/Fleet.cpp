@@ -37,6 +37,22 @@ void Fleet::printList(std::ostream& out) const {
     }
 }
 
+double Fleet::totalDailyEnergy() const {
+    double total = 0;
+    for (std::size_t i = 0; i < items_.size(); ++i) {
+        total += items_[i]->dailyEnergy();
+    }
+    return total;
+}
+
+void Fleet::printNovice(std::ostream& out, const int threshold) const {
+    for (std::size_t i = 0; i < items_.size(); ++i) {
+        if (items_[i]->suitableForNovice(threshold)) {
+            out << *items_[i] << '\n';
+        }
+    }
+}
+
 void Fleet::checkUniqueId(const std::string& id) const {
     for (std::size_t i = 0; i < items_.size(); ++i) {
         if (items_[i]->inventoryId() == id) {

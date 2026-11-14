@@ -15,6 +15,8 @@ public:
     void addTransport(std::unique_ptr<Transport> vehicle);
     void addItem(std::unique_ptr<InventoryItem> item);
     void printList(std::ostream& out) const;
+    double totalDailyEnergy() const;
+    void printNovice(std::ostream& out, int threshold = 6) const;
     std::size_t size() const;
 
 private:

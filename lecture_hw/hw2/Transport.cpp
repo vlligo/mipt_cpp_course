@@ -21,6 +21,10 @@ const std::string& Transport::name() const {
     return name_;
 }
 
+bool Transport::suitableForNovice(const int threshold) const {
+    return score() >= threshold;
+}
+
 int Transport::score() const {
     return score_;
 }
