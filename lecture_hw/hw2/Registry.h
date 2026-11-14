@@ -12,6 +12,10 @@ public:
         entries_.push_back(std::move(entry));
     }
 
+    void erase(std::size_t index) {
+        entries_.erase(entries_.begin() + index);
+    }
+
     std::size_t size() const {
         return entries_.size();
     }

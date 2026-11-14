@@ -68,3 +68,19 @@ std::string ElectricBicycle::describe() const {
 double ElectricBicycle::dailyEnergy() const {
     return energy_;
 }
+
+ElectricSkateboard::ElectricSkateboard(const std::string& id,
+                                       const std::string& name, const double energy, const int score)
+    : Transport(id, name, score), energy_(energy) {
+    if (energy_ < 0) {
+        throw InvalidCommand("negative energy");
+    }
+}
+
+std::string ElectricSkateboard::describe() const {
+    return inventoryId() + " " + name();
+}
+
+double ElectricSkateboard::dailyEnergy() const {
+    return energy_;
+}

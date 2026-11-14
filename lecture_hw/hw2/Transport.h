@@ -52,4 +52,16 @@ private:
     double energy_;
 };
 
+class ElectricSkateboard : public Transport, public EnergyConsumer {
+public:
+    ElectricSkateboard(const std::string& id, const std::string& name,
+                       double energy, int score);
+
+    std::string describe() const override;
+    double dailyEnergy() const override;
+
+private:
+    double energy_;
+};
+
 #endif // MIPT_CPP_TRANSPORT_H

@@ -53,12 +53,60 @@ void Fleet::printNovice(std::ostream& out, const int threshold) const {
     }
 }
 
+void Fleet::focus(const std::string& id) {
+    const std::size_t index = findIndex(id);
+    if (index == items_.size()) {
+        throw InvalidCommand("invalid id");
+    }
+    focused_ = items_[index];
+}
+
+void Fleet::showFocus(std::ostream& out) const {
+    const auto item = focused_.lock();
+    if (item) {
+        out << *item << '\n';
+    } else {
+        out << "expired\n";
+    }
+}
+
+void Fleet::remove(const std::string& id) {
+    const std::size_t index = findIndex(id);
+    if (index == items_.size()) {
+        throw InvalidCommand("invalid id");
+    }
+    items_.erase(index);
+}
+
+void Fleet::printMaxEnergy(std::ostream& out) const {
+    if (items_.size() == 0) {
+        out << "empty\n";
+        return;
+    }
+    std::size_t ans = 0;
+    for (std::size_t i = 1; i < items_.size(); ++i) {
+        if (items_[i]->dailyEnergy() > items_[ans]->dailyEnergy()) {
+            ans = i;
+        }
+    }
+    out << *items_[ans] << ' ' << items_[ans]->dailyEnergy() << '\n';
+}
+
 void Fleet::checkUniqueId(const std::string& id) const {
     for (std::size_t i = 0; i < items_.size(); ++i) {
         if (items_[i]->inventoryId() == id) {
             throw InvalidCommand("item or vehicle with this ID already exists");
         }
     }
+}
+
+std::size_t Fleet::findIndex(const std::string& id) const {
+    for (std::size_t i = 0; i < items_.size(); ++i) {
+        if (items_[i]->inventoryId() == id) {
+            return i;
+        }
+    }
+    return items_.size();
 }
 
 std::size_t Fleet::size() const {
